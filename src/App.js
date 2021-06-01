@@ -2,6 +2,7 @@
 import './App.css';
 import React,{createRef} from 'react';
 import Box from './Components/Box'
+import { Func, Func2 } from './Components/Func';
 
 class App extends React.Component
 {
@@ -25,14 +26,19 @@ class App extends React.Component
 
      addItem(){
        let temp= this.item.current.value;
+       console.log(temp ,'printed')
+       if(temp==="")
+         alert("please fill something")
+        else{
        let type=Number(this.type.current.value);
        console.log(temp,type)
        this.state.items[type].push(temp);
        console.log(this.state.items);
        this.setState(this.state);
+        }
      }
      render(){
-  
+          let mystyle={overflow:"hidden"}
          return(
            <div>
               <h1>React First Component is running</h1>
@@ -46,11 +52,18 @@ class App extends React.Component
                 </select>
                 <button onClick={this.addItem}>add Item</button>
               </div>
+              <div style={mystyle}>
               {
               this.state.titles.map(
-                (x,index)=><Box key={x} title={x} items={this.state.items[index]}></Box>
+                (x,index)=>
+                <Box key={x} title={x} items={this.state.items[index]}><h6>&copy;All copyrights reseved</h6></Box>
               )
               }
+              </div>
+              <div style={mystyle}>
+              <Func name="Jay"></Func>
+              <Func2 name="India"></Func2>
+              </div>
            </div>
          )
      }

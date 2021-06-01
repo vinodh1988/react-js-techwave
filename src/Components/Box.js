@@ -12,6 +12,7 @@ class Box extends React.Component{
             <ul>
                 {this.props.items.map(x=><li key={x} style={temp}>{x}</li>)}
             </ul>
+            {this.props.children}
         </div>
         );
     }
