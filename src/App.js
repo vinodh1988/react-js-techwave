@@ -8,6 +8,7 @@ class App extends React.Component
 {
      constructor(){
        super();
+       console.log("parent constructor")
       
         this.state={
           titles :["fruits","vegetables","spices","electronic goods"],
@@ -37,7 +38,23 @@ class App extends React.Component
        this.setState(this.state);
         }
      }
+
+     componentDidMount(){
+           console.log("Parent mount")
+
+     }
+     shouldComponentUpdate(nextProps, nextState){
+       console.log("about to update")
+       console.log(nextProps,nextState)
+      
+       return true
+     
+     }
+     componentDidUpdate(prevProps, prevState, snapshot) {
+      console.log("component updated")
+    }
      render(){
+       console.log("Parent render started");
           let mystyle={overflow:"hidden"}
          return(
            <div>
