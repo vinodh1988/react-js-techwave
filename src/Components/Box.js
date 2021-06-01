@@ -10,7 +10,7 @@ class Box extends React.Component{
             {this.props.title}
             <hr/>
             <ul>
-                {this.props.items.map(x=><li style={temp}>{x}</li>)}
+                {this.props.items.map(x=><li key={x} style={temp}>{x}</li>)}
             </ul>
         </div>
         );

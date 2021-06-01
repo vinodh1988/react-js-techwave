@@ -1,6 +1,6 @@
 
 import './App.css';
-import React from 'react';
+import React,{createRef} from 'react';
 import Box from './Components/Box'
 
 class App extends React.Component
@@ -17,16 +17,38 @@ class App extends React.Component
             ["Pendrive","Mobile","Laptop"]
           ]
         }
+         
+        this.addItem = this.addItem.bind(this);
+        this.item=createRef();
+        this.type=createRef(); //uncontrolled forms
+     }
 
+     addItem(){
+       let temp= this.item.current.value;
+       let type=Number(this.type.current.value);
+       console.log(temp,type)
+       this.state.items[type].push(temp);
+       console.log(this.state.items);
+       this.setState(this.state);
      }
      render(){
-      console.log(this);
+  
          return(
            <div>
               <h1>React First Component is running</h1>
+              <div>
+                <input type="text" ref={this.item} />
+                <select ref={this.type}>
+                  <option value="0">fruits</option>
+                  <option value="1">vegetables</option>
+                  <option value="2">spices</option>
+                  <option value="3">electronic goods</option>
+                </select>
+                <button onClick={this.addItem}>add Item</button>
+              </div>
               {
               this.state.titles.map(
-                (x,index)=><Box title={x} items={this.state.items[index]}></Box>
+                (x,index)=><Box key={x} title={x} items={this.state.items[index]}></Box>
               )
               }
            </div>
